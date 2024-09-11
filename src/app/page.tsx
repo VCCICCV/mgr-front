@@ -14,7 +14,7 @@ export default function Home() {
       </div>
       {/* 搜索栏 */}
       <div
-        className="home__filters">
+        className="home_filters">
         <SearchBar />
         <div className="home_filterso-container">
           <CustomFilter />

@@ -74,13 +74,9 @@ jobs:
 
       - name: Publish image to docker hub
         run: docker push vcciccv/nextjs-app:latest # 推送镜像到Docker Hub
-      - name: install nodejs
-        uses: actions/setup-node@v4.0.3
-        with:
-          node-version: "18.19.x"
 
   deploy:
-    needs: build
+    needs: build # 前一项执行结束再执行这一项
     runs-on: self-hosted # 指定在自己的服务器上执行
     steps:
       - name: Login to Docker Hub # 登录Docker Hub
@@ -91,11 +87,9 @@ jobs:
 
       - name: Delete old container
         run: docker rm -f nextjs-app # 删除旧容器
-      - name: Delete old image
 
-        run: docker rmi -f vcciccv/nextjs-app:latest # 删除旧镜像
       - name: Run docker container
-        run: docker run -d -p 3000:3000 --name nextjs-app --restart always vcciccv/nextjs-app:latest # 运行镜像
+        run: docker run -d -p 3000:3000 --network pub-network --name nextjs-app --restart always vcciccv/nextjs-app:latest # 运行镜像
 
 
 
@@ -105,50 +99,3 @@ jobs:
 
 
 
-# name: Build and Deploy Docker Image
-
-# on:
-#   push:
-#     branches:
-#       - main
-#     # 你也可以指定打标签的时候触发构建
-#     # tags:
-#     #   - 'v*' # 当有以 'v' 开头的 tag
-# jobs:
-#   build-and-deploy:
-#     name: npm-build工作
-#     runs-on: ubuntu-latest # 指定操作系统
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
-
-#       - name: install nodejs
-#         uses: actions/setup-node@v4.0.3
-#         with:
-#           node-version: "20.x"
-
-#       - name: Login to Docker Hub # 登录Docker Hub
-#         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-  
-#       - name: Build and push Docker image
-#         run: |
-#           make image.push # 构建并推送 Docker 镜像
-#       - name: Deploy to server
-#         uses: appleboy/ssh-action@master
-#         env:
-#           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-#           GIT_TAG: ${{ steps.get_version.outputs.VERSION }} # 使用之前步骤中获取的版本号
-#         with:
-#           host: ${{ secrets.SERVER_HOST }}
-#           username: ${{ secrets.SERVER_USERNAME }}
-#           password: ${{ secrets.SERVER_PASSWORD }}
-#           port: 22
-#           envs: DOCKERHUB_USERNAME,GIT_TAG
-#           script: |
-#               # 删除所有指定名称的镜像
-#               docker rmi $(docker images -q $DOCKERHUB_USERNAME/kkdl)
-#               # 拉取 Docker 镜像
-#               docker pull docker.io/$DOCKERHUB_USERNAME/kkdl:$GIT_TAG 
-#               # 检查容器是否存在，停止并删除已存在的容器，然后运行新的容器
-#               docker container ls -a | grep -q "kkdl" && docker stop kkdl && docker rm kkdl
-#               docker run -d --name kkdl -p 6001:6001 $DOCKERHUB_USERNAME/kkdl:$GIT_TAG

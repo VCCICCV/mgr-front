@@ -4,8 +4,10 @@ import { Button } from "@nextui-org/react";
 import { useState } from 'react';
 import { Input } from "@nextui-org/input";
 import Image from 'next/image'
-const SearchProduct = ({ carTypes, setCarTypes }: SearchProductProps) => {
+import { ProductName } from '@/constants'
+const SearchProduct = ({ ProductName, setProductName }: SearchProductProps) => {
   const [query, setQuery] = useState("")
+  // const filterProduct = query === "" ? ProductName : ProductName.filter((item: string) => item.toLowerCase().includes(query.toLowerCase()));
   return (
     <div className="search-product">
       <Button color="primary" className="absolute top-[14px]" />
@@ -33,7 +35,7 @@ const SearchProduct = ({ carTypes, setCarTypes }: SearchProductProps) => {
           ],
         }}
         placeholder="电车"
-        value={carTypes}
+        value={ProductName}
         onChange={(e) => setQuery(e.target.value)}
       >
       </Input>

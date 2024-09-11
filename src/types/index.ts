@@ -2,7 +2,7 @@
  * @Author: cci
  * @Date: 2024-08-30 01:37:42
  * @LastEditors: cci
- * @LastEditTime: 2024-08-30 01:46:15
+ * @LastEditTime: 2024-09-12 02:29:45
  * @Description: 声明Ts类型，减少重复代码
  * 
  * Copyright (c) 2024 by TGM All Rights Reserved. 
@@ -10,18 +10,10 @@
 import type { MouseEventHandler } from "react";
 
 export interface ProductProps {
-  city_mpg: number;
-  class: string;
-  combination_mpg: number;
-  cylinders: number;
-  displacement: number;
-  drive: string;
-  fuel_type: string;
-  highway_mpg: number;
-  make: string;
+  name: string;
+  image: string;
+  info: string;
   model: string;
-  transmission: string;
-  year: number;
 }
 
 export interface FilterProps {
@@ -72,6 +64,6 @@ export interface ShowMoreProps {
 }
 
 export interface SearchProductProps {
-  carTypes: string;
-  setCarTypes: (carTypes: string) => void;
+  ProductName: string;
+  setProductName: (ProductName: string) => void;
 }

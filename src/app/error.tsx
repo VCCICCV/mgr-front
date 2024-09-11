@@ -1,7 +1,7 @@
 'use client';
 const error = () => {
     return (
-        <div>出错啦</div>
+        <div className="h-screen flex items-center justify-center">出错啦</div>
     )
 }
 
