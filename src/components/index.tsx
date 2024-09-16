@@ -17,7 +17,8 @@ import SearchProduct from "./mall/SearchProduct";
 import ProductDetail from "./mall/ProductDetail";
 import ProductCard from "./mall/ProductCard";
 import CarDetail from "./home/CarDetail";
-export{
+import Scene from "./three/Scene";
+export {
     // common
     Navbar,
     Footer,
@@ -30,5 +31,7 @@ export{
     ProductDetail,
     ProductCard,
     SearchProduct,
-    SearchBar
+    SearchBar,
+    // three
+    Scene,
 }

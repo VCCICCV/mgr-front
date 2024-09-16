@@ -1,7 +1,12 @@
-## 这是TGM的前端项目
+# 这是TGM的前端项目
 
-`tgm-front`使用Next.js、Tailwindcss、、three.js等技术栈开发
-
+## Stack
+* Next.js
+* Tailwindcss
+* three.js
+* react-three-fiber
+* react-three-drei
+* rspack
 ## 快速开始
 
 ```bash
