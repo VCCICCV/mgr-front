@@ -13,8 +13,13 @@ import { Footer, Navbar } from "../components";
 
 // 1.导入Providers组件
 import { Providers } from "./providers";
+import type { Metadata } from "next";
 const inter = Inter({ subsets: ["latin"] });
-<head />
+//  元数据
+export const metadata:Metadata = {
+  title:"锈化动力",
+  description: "基于Next.js和Axumm实现的Web 3D购车商城",
+}
 export default function RootLayout({
   children,
 }: Readonly<{

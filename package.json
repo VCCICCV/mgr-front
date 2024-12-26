@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 9010",
+    "dev": "next dev -p 9090",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -18,7 +18,8 @@
     "next": "14.2.7",
     "react": "^18",
     "react-dom": "^18",
-    "three": "^0.168.0"
+    "three": "^0.168.0",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.16.5",
