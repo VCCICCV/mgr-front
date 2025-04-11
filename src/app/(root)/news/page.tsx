@@ -10,7 +10,7 @@ export default async function page() {
     return (
         <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-6">
-                最新新闻 <span className="text-lg text-gray-500">(共 {result.allnum} 条)</span>
+                最新 <span className="text-lg text-gray-500">(共 {result.allnum} 条)</span>
             </h1>
             <select defaultValue={10} allNumOptions={pageSizeOptions}/>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
