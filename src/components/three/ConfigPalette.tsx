@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import CustomerCard from './CustomerCard'
 import { Button } from '../ui/button'
-import { configData } from '@/constant';
+import { configData } from '@/lib/constant';
 
 const ConfigPalette = () => {
     const [activeTab, setActiveTab] = useState('车身'); // 默认选中"车身"
@@ -33,8 +33,8 @@ const ConfigPalette = () => {
                         description={item.name}
                         price={item.price}
                         image={item.value}
-                        // isSelected={getSelectedValue() === item.id}
-                        // onSelect={() => handleSelect(item.id)}
+                    // isSelected={getSelectedValue() === item.id}
+                    // onSelect={() => handleSelect(item.id)}
                     />
                 ))}
             </div>

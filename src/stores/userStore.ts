@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { User, ApiResponse } from "@/types/user";
+import type { User, ApiResponse } from "@/types/users";
 
 interface UserState {
   users: User[];
@@ -18,8 +18,12 @@ const useUserStore = create<UserState>((set) => ({
   fetchUsers: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch("http://localhost:8080/api/users");
+      const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+      if (!apiUrl) throw new Error("API base URL is not configured");
+
+      const response = await fetch(`${apiUrl}/users`);
       if (!response.ok) throw new Error("Failed to fetch users");
+
       const data: ApiResponse = await response.json();
       set({ users: data.data, loading: false });
     } catch (err) {
@@ -29,7 +33,6 @@ const useUserStore = create<UserState>((set) => ({
       });
     }
   },
-
   toggleUserStatus: (userId) => {
     set((state) => ({
       users: state.users.map((user) =>

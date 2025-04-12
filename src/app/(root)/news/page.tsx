@@ -1,6 +1,6 @@
 'use server'
 import { getNewsData } from "@/api/news";
-import { pageSizeOptions } from "@/constant";
+import { pageSizeOptions } from "@/lib/constant";
 
 export default async function page() {
     // 默认显示10条数据
@@ -12,7 +12,7 @@ export default async function page() {
             <h1 className="text-3xl font-bold mb-6">
                 最新 <span className="text-lg text-gray-500">(共 {result.allnum} 条)</span>
             </h1>
-            <select defaultValue={10} allNumOptions={pageSizeOptions}/>
+            <select defaultValue={10} allNumOptions={pageSizeOptions} />
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {result.newslist.map((it7em) => (
                     // 新闻页

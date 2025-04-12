@@ -1,87 +1,72 @@
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableFooter,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
+"use client";
+import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import Image from "next/image";
+import useUserStore from "@/stores/userStore";
+export default function UserTable() {
+    const { users, loading, error, toggleUserStatus, deleteUser } = useUserStore();
 
-const invoices = [
-    {
-        invoice: "INV001",
-        paymentStatus: "Paid",
-        totalAmount: "$250.00",
-        paymentMethod: "Credit Card",
-    },
-    {
-        invoice: "INV002",
-        paymentStatus: "Pending",
-        totalAmount: "$150.00",
-        paymentMethod: "PayPal",
-    },
-    {
-        invoice: "INV003",
-        paymentStatus: "Unpaid",
-        totalAmount: "$350.00",
-        paymentMethod: "Bank Transfer",
-    },
-    {
-        invoice: "INV004",
-        paymentStatus: "Paid",
-        totalAmount: "$450.00",
-        paymentMethod: "Credit Card",
-    },
-    {
-        invoice: "INV005",
-        paymentStatus: "Paid",
-        totalAmount: "$550.00",
-        paymentMethod: "PayPal",
-    },
-    {
-        invoice: "INV006",
-        paymentStatus: "Pending",
-        totalAmount: "$200.00",
-        paymentMethod: "Bank Transfer",
-    },
-    {
-        invoice: "INV007",
-        paymentStatus: "Unpaid",
-        totalAmount: "$300.00",
-        paymentMethod: "Credit Card",
-    },
-]
+    if (loading) return <div className="text-center py-8">Loading users...</div>;
+    if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
+    if (users.length === 0) return <div className="text-center py-8">No users found</div>;
 
-export function TableDemo() {
     return (
         <Table>
-            <TableCaption>A list of your recent invoices.</TableCaption>
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[100px]">Invoice</TableHead>
+                    <TableHead>Avatar</TableHead>
+                    <TableHead>Username</TableHead>
+                    <TableHead>Nickname</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Phone</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead>Method</TableHead>
-                    <TableHead className="text-right">Amount</TableHead>
+                    <TableHead>Created At</TableHead>
+                    <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {invoices.map((invoice) => (
-                    <TableRow key={invoice.invoice}>
-                        <TableCell className="font-medium">{invoice.invoice}</TableCell>
-                        <TableCell>{invoice.paymentStatus}</TableCell>
-                        <TableCell>{invoice.paymentMethod}</TableCell>
-                        <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+                {users.map((user) => (
+                    <TableRow key={user.id}>
+                        <TableCell>
+                            <Image
+                                src={user.avatar}
+                                alt={user.avatar}
+                                width={40}
+                                height={40}
+                                className="rounded-full"
+                            />
+                        </TableCell>
+                        <TableCell>{user.username}</TableCell>
+                        <TableCell>{user.nickName}</TableCell>
+                        <TableCell>{user.email}</TableCell>
+                        <TableCell>{user.phoneNumber}</TableCell>
+                        <TableCell>
+                            <Badge variant={user.status === "Enabled" ? "default" : "destructive"}>
+                                {user.status}
+                            </Badge>
+                        </TableCell>
+                        <TableCell>{new Date(user.createdAt).toLocaleString()}</TableCell>
+                        <TableCell className="flex gap-2">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => toggleUserStatus(user.id)}
+                            >
+                                {user.status === "Enabled" ? "Disable" : "Enable"}
+                            </Button>
+                            <Button
+                                variant="destructive"
+                                size="sm"
+                                onClick={() => deleteUser(user.id)}
+                            >
+                                Delete
+                            </Button>
+                        </TableCell>
                     </TableRow>
                 ))}
             </TableBody>
-            <TableFooter>
-                <TableRow>
-                    <TableCell colSpan={3}>Total</TableCell>
-                    <TableCell className="text-right">$2,500.00</TableCell>
-                </TableRow>
-            </TableFooter>
         </Table>
-    )
+    );
 }
