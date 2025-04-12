@@ -34,3 +34,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Preview
+
+![image-20250412183659993](./README.assets/image-20250412183659993.png)
+
+![image-20250412183721434](./README.assets/image-20250412183721434.png)
+
+Order docking backend is not completed
+
+![image-20250412183744102](./README.assets/image-20250412183744102.png)
