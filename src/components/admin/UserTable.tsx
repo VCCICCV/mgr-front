@@ -8,9 +8,9 @@ import useUserStore from "@/stores/userStore";
 export default function UserTable() {
     const { users, loading, error, toggleUserStatus, deleteUser } = useUserStore();
 
-    if (loading) return <div className="text-center py-8">Loading users...</div>;
+    if (loading) return <div className="text-center py-8">加载用户...</div>;
     if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
-    if (users.length === 0) return <div className="text-center py-8">No users found</div>;
+    if (users.length === 0) return <div className="text-center py-8">没有找到用户</div>;
 
     return (
         <Table>

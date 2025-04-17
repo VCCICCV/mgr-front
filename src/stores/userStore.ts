@@ -21,7 +21,7 @@ const useUserStore = create<UserState>((set) => ({
       const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
       if (!apiUrl) throw new Error("API base URL is not configured");
 
-      const response = await fetch(`${apiUrl}/users`);
+      const response = await fetch(`${apiUrl}/admin/users`);
       if (!response.ok) throw new Error("Failed to fetch users");
 
       const data: ApiResponse = await response.json();

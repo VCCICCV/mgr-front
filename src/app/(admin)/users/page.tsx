@@ -1,8 +1,9 @@
+'use client'
+import UserTable from "@/components/admin/UserTable";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import useUserStore from "@/stores/userStore";
 import { useEffect } from "react";
-import UserTable from "@/components/admin/Usertable";
 export default function UserManagementPage() {
     const { fetchUsers } = useUserStore();
 

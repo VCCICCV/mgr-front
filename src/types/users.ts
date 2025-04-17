@@ -18,3 +18,14 @@ export interface ApiResponse {
   message: string;
   data: User[];
 }
+
+export interface UserListResponse {
+  code: number;
+  message: string;
+  data: {
+    current: number;
+    size: number;
+    total: number;
+    data: User[];
+  };
+}
