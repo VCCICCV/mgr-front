@@ -1,0 +1,51 @@
+{
+  "RootLayout": {
+    "title": "客户关系管理系统",
+    "description": "NextCRM是基于NextJS开发的开源客户关系管理系统。"
+  },
+  "ModuleMenu": {
+    "dashboard": "仪表盘",
+    "crm": {
+      "title": "销售管理",
+      "accounts": "企业客户",
+      "opportunities": "商机",
+      "contacts": "联系人",
+      "leads": "潜在客户",
+      "contracts": "合同"
+    },
+    "projects": "项目管理",
+    "emails": "邮件",
+    "tasks": "任务",
+    "invoices": "发票",
+    "reports": "报表",
+    "documents": "文档",
+    "storage": "文件存储",
+    "settings": "系统管理"
+  },
+  "DashboardPage": {
+    "containerTitle": "控制面板",
+    "totalRevenue": "总收入",
+    "containerDescription": "欢迎使用NextCRM，这里可以查看您业务的所有重要信息。",
+    "expectedRevenue": "预期收入",
+    "activeUsers": "活跃用户",
+    "accounts": "企业客户",
+    "opportunities": "商机",
+    "contacts": "联系人",
+    "leads": "潜在客户",
+    "projects": "项目",
+    "tasks": "任务",
+    "myTasks": "我的任务",
+    "invoices": "发票",
+    "documents": "文档",
+    "storage": "文件存储"
+  },
+  "RegisterComponent": {
+    "cardTitle": "创建新账户",
+    "cardDescription": "通过以下方式注册账户",
+    "label": "语言",
+    "locale": "{locale, select, de {德语} en {英语} cz {捷克语} uk {乌克兰语} other {未知语言}}"
+  },
+  "CrmModuleMenuComponent": {
+    "menuTitle": "销售管理"
+  }
+}

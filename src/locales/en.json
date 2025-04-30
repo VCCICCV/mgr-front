@@ -1,7 +1,7 @@
 {
   "RootLayout": {
     "title": "NextCRM",
-    "description": "NextCRM is an open source CRM build on top of NextJS."
+    "description": "MGR is an open source CRM build on top of NextJS."
   },
   "ModuleMenu": {
     "dashboard": "Dashboard",

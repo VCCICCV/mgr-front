@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import { Button } from './ui/button'
 import Image from 'next/image'
+// 顶部
 const Navbar = () => {
     return (
         <header className='w-full absolute z-10'>

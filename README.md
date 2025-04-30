@@ -44,3 +44,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 Order docking backend is not completed
 
 ![image-20250412183744102](./README.assets/image-20250412183744102.png)
+## 常用快捷键
+- rfc：函数组件（无状态）
+- rafce：箭头函数组件
+- rmc：用memo包裹的高阶组件（记忆化渲染）
