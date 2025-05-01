@@ -161,10 +161,6 @@ declare namespace App {
 
   /** Global namespace */
   namespace Global {
-    type RouteKey = import('@soybean-react/vite-plugin-react-router').RouteKey;
-    type RouteMap = import('@soybean-react/vite-plugin-react-router').RouteMap;
-    type RoutePath = import('@soybean-react/vite-plugin-react-router').RoutePath;
-    type LastLevelRouteKey = import('@soybean-react/vite-plugin-react-router').LastLevelRouteKey;
 
     /** The global header props */
     interface HeaderProps {
@@ -267,7 +263,6 @@ declare namespace App {
    * Locales type
    */
   namespace I18n {
-    type RouteKey = import('@soybean-react/vite-plugin-react-router').RouteKey;
 
     type LangType = 'en-US' | 'zh-CN';
 

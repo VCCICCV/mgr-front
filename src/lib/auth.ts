@@ -1,5 +1,7 @@
 // import { SignupFormSchema, FormState } from "@/app/lib/definitions";
 
+import { NextRequest } from "next/server";
+
 // export async function signup(state: FormState, formData: FormData) {
 //   // 验证字段
 //   const validatedFields = SignupFormSchema.safeParse({
@@ -17,3 +19,7 @@
 
 //   // 调用
 // }
+
+export async function login() {}
+export async function getSession() {}
+export async function updateSession(request: NextRequest) {}

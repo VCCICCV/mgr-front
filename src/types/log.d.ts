@@ -13,7 +13,8 @@ declare namespace Log {
   type LoginLogList = Api.Common.PaginatingQueryRecord<LoginLog>;
 
   type LoginLogSearchParams = CommonType.RecordNullable<
-    Pick<LoginLog, 'username' | 'domain' | 'address' | 'type'> & Api.Common.CommonSearchParams
+    Pick<LoginLog, "username" | "domain" | "address" | "type"> &
+      Api.Common.CommonSearchParams
   >;
 
   type OperationLog = Api.Common.CommonRecord<{
@@ -27,8 +28,11 @@ declare namespace Log {
     url: string;
     ip: string;
     userAgent: string | null;
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     params: any;
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     body: any;
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     response: any;
     startTime: string;
     endTime: string;
@@ -38,6 +42,7 @@ declare namespace Log {
   type OperationLogList = Api.Common.PaginatingQueryRecord<OperationLog>;
 
   type OperationLogSearchParams = CommonType.RecordNullable<
-    Pick<OperationLog, 'username' | 'domain' | 'moduleName' | 'method'> & Api.Common.CommonSearchParams
+    Pick<OperationLog, "username" | "domain" | "moduleName" | "method"> &
+      Api.Common.CommonSearchParams
   >;
 }
