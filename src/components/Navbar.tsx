@@ -17,8 +17,12 @@ const Navbar = () => {
                     />
                 </Link>
                 <div className="flex justify-end space-x-4 pr-8">
-                    <Button className="bg-blue-500 rounded-full mt-10">注册</Button>
-                    <Button className="bg-blue-500 rounded-full mt-10">登录</Button>
+                    <Link href="/sign-up">
+                        <Button className="bg-blue-500 rounded-full mt-10">注册</Button>
+                    </Link>
+                    <Link href="/sign-in">
+                        <Button className="bg-blue-500 rounded-full mt-10">登录</Button>
+                    </Link>
                 </div>
             </nav>
 

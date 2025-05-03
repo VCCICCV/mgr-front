@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const useUserStore = create((set: (arg0: { user: any; isLoggedIn: boolean; }) => void) => ({
