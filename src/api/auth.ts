@@ -1,5 +1,5 @@
 // src/api/auth.ts
-import { customFetch } from "../utils/request";
+import { customFetch } from "../utils/api";
 
 /**
  * 用户登录

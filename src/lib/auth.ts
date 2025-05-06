@@ -1,25 +1,52 @@
-// import { SignupFormSchema, FormState } from "@/app/lib/definitions";
+// src/lib/auth.ts
+import { cookies } from "next/headers";
 
-import { NextRequest } from "next/server";
+// 获取当前 token
+export const getToken = async () => {
+  return (await cookies()).get("token")?.value;
+};
 
-// export async function signup(state: FormState, formData: FormData) {
-//   // 验证字段
-//   const validatedFields = SignupFormSchema.safeParse({
-//     name: formData.get("name"),
-//     email: formData.get("email"),
-//     password: formData.get("password"),
-//   });
+// 刷新 token
+export const refreshToken = async () => {
+  if (typeof window === "undefined") return null;
 
-//   // 无效返回
-//   if (!validatedFields.success) {
-//     return {
-//       errors: validatedFields.error.flatten().fieldErrors,
-//     };
-//   }
+  const refreshToken = localStorage.getItem("refresh_token");
+  if (!refreshToken) return null;
 
-//   // 调用
-// }
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/refresh`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ refresh_token: refreshToken }),
+      }
+    );
 
-export async function login() {}
-export async function getSession() {}
-export async function updateSession(request: NextRequest) {}
+    if (!response.ok) throw new Error("刷新失败");
+
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    return null;
+  }
+};
+// 解码token
+export const decodeToken = (token: string) => {
+  try {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map((c) => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`)
+        .join("")
+    );
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    console.error("解码 token 失败:", error);
+    return null;
+  }
+};

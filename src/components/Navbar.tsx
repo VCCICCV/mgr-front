@@ -17,10 +17,10 @@ const Navbar = () => {
                     />
                 </Link>
                 <div className="flex justify-end space-x-4 pr-8">
-                    <Link href="/sign-up">
+                    <Link href="/auth/sign-up">
                         <Button className="bg-blue-500 rounded-full mt-10">注册</Button>
                     </Link>
-                    <Link href="/sign-in">
+                    <Link href="/auth/sign-in">
                         <Button className="bg-blue-500 rounded-full mt-10">登录</Button>
                     </Link>
                 </div>
