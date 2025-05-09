@@ -1,8 +1,8 @@
 const title = '锈化动力'
 const url = 'https:145632.xyz'
-const description = 'Web 3D营销平台，可靠、实用、省心'
+const description = 'Web 3D营销平台,可靠、实用、省心'
 const author = 'cci'
-const twitter = '@pmndrs'
+const twitter = '@cccccc'
 
 export default function Head() {
     return (

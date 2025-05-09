@@ -1,11 +1,11 @@
+// src/lib/actions/authAction.ts
 "use server";
 
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { setServerToken, deleteServerToken } from "@/utils/token_server";
 
 export const signIn = async (formData: {
-  identifier?: string;
-  password?: string;
+  identifier: string;
+  password: string;
 }) => {
   try {
     const response = await fetch(
@@ -15,48 +15,64 @@ export const signIn = async (formData: {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          identifier: formData.identifier,
-          password: formData.password,
-        }),
+        body: JSON.stringify(formData),
       }
     );
 
     const data = await response.json();
-    if (data.success) {
-      // 设置 token cookie (httpOnly)
-      (await
-            // 设置 token cookie (httpOnly)
-            cookies()).set("token", data.data.token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
-        path: "/",
-        maxAge: 60 * 60 * 24 * 7, // 7天
-      });
 
-      // 返回 refresh_token 给客户端存储
+    if (data?.success) {
+      await setServerToken(data.data.token); // 添加await
       return {
         success: true,
-        message: "登录成功",
+        message: data.msg,
         refreshToken: data.data.refresh_token,
       };
     }
-    return { success: false, message: data.msg || "登录失败" };
+    return { success: false, message: data?.msg || "登录失败" };
   } catch (error) {
     console.error("登录错误:", error);
     return { success: false, message: "网络错误，请稍后重试" };
   }
 };
+export const signUp = async (formData: {
+  identifier: string;
+  password: string;
+}) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
 
-export const signOut = async () => {
-  // 清除 token cookie
-  (await
-        // 清除 token cookie
-        cookies()).delete("token");
+    const data = await response.json();
 
-  // 返回指令让客户端清除 refresh_token
-  return { clearRefreshToken: true };
+    if (data?.success) {
+      await setServerToken(data.data.token); // 添加await
+      return {
+        success: true,
+        message: data.msg,
+        refreshToken: data.data.refresh_token,
+      };
+    }
+    return { success: false, message: data?.msg || "登录失败" };
+  } catch (error) {
+    console.error("登录错误:", error);
+    return { success: false, message: "网络错误，请稍后重试" };
+  }
 };
-
-export const signUp = async () => {};
+export const signOut = async () => {
+  try {
+    await deleteServerToken();
+    return { success: true };
+  } catch (error) {
+    console.error("登出失败:", error);
+    return { success: false };
+  }
+};

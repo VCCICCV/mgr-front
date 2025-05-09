@@ -1,6 +1,6 @@
 {
   "RootLayout": {
-    "title": "NextCRM",
+    "title": "MGR",
     "description": "MGR is an open source CRM build on top of NextJS."
   },
   "ModuleMenu": {
@@ -25,7 +25,7 @@
   "DashboardPage": {
     "containerTitle": "Dashboard",
     "totalRevenue": "Total revenue",
-    "containerDescription": "Welcome to NextCRM, here you can see all important information about your business.",
+    "containerDescription": "Welcome to MGR, here you can see all important information about your business.",
     "expectedRevenue": "Expected revenue",
     "activeUsers": "Active users",
     "accounts": "Companies",

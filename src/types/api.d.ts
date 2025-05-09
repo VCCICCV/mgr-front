@@ -3,6 +3,7 @@
  *
  * All backend api type
  */
+// src\types\api.d.ts
 declare namespace Api {
   namespace Common {
     /** common params of paginating */
@@ -17,6 +18,7 @@ declare namespace Api {
 
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     interface PaginatingQueryRecord<T = any> extends PaginatingCommonParams {
+      length: number;
       records: T[];
     }
 
@@ -32,7 +34,7 @@ declare namespace Api {
      * - "ENABLED": enabled
      * - "DISABLED": disabled
      */
-    type EnableStatus = "ENABLED" | "DISABLED";
+    type EnableStatus = "Enabled" | "Disabled";
 
     /** common record */
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -68,7 +70,6 @@ declare namespace Api {
       userId: string;
       userName: string;
       roles: string[];
-      buttons: string[];
     }
   }
 

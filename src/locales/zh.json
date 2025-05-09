@@ -1,7 +1,7 @@
 {
   "RootLayout": {
-    "title": "客户关系管理系统",
-    "description": "NextCRM是基于NextJS开发的开源客户关系管理系统。"
+    "title": "锈化动力商城",
+    "description": "Mgr是基于NextJS开发的开源客户关系管理系统。"
   },
   "ModuleMenu": {
     "dashboard": "仪表盘",
@@ -25,7 +25,7 @@
   "DashboardPage": {
     "containerTitle": "控制面板",
     "totalRevenue": "总收入",
-    "containerDescription": "欢迎使用NextCRM，这里可以查看您业务的所有重要信息。",
+    "containerDescription": "欢迎使用MGR，这里可以查看您业务的所有重要信息。",
     "expectedRevenue": "预期收入",
     "activeUsers": "活跃用户",
     "accounts": "企业客户",

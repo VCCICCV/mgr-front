@@ -1,40 +1,66 @@
-// src/api/auth.ts
-import { customFetch } from "../utils/api";
+"use server";
+// src\api\auth.ts
+import { cookies } from "next/headers";
 
-/**
- * 用户登录
- */
-export async function fetchLogin(identifier: string, password: string) {
-  return customFetch<Api.Auth.LoginToken>("/auth/login", {
-    method: "POST",
-    data: { identifier, password },
-  });
+export async function fetchGetUserInfo(): Promise<Api.Auth.UserInfo> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+  const headers: HeadersInit = {
+    "Content-Type": "application/json",
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/getUserInfo`,
+      {
+        method: "GET",
+        credentials: "include",
+        headers,
+      }
+    );
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.message || "获取用户信息失败");
+    }
+    const responseData = await response.json();
+    return responseData.data;
+  } catch (error) {
+    console.error("获取用户信息错误:", error);
+    throw error;
+  }
 }
+export async function fetchGetUserList(
+  params?: Api.SystemManage.UserSearchParams
+): Promise<Api.SystemManage.UserList> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+  const headers: HeadersInit = {
+    "Content-Type": "application/json",
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/getUserInfo`,
+      {
+        method: "GET",
+        credentials: "include",
+        headers,
+      }
+    );
 
-/**
- * 获取用户信息
- */
-export function fetchGetUserInfo() {
-  return customFetch<Api.Auth.UserInfo>("/auth/getUserInfo", {
-    method: "GET",
-  });
-}
-
-/**
- * 刷新Token
- */
-export async function fetchRefreshToken(refreshToken: string) {
-  return customFetch<Api.Auth.LoginToken>("/auth/refreshToken", {
-    method: "POST",
-    data: { refreshToken },
-  });
-}
-
-/**
- * 触发自定义错误
- */
-export function fetchCustomBackendError(code: string, msg: string) {
-  return customFetch("/auth/error", {
-    params: { code, msg },
-  });
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.message || "获取用户列表失败");
+    }
+    const responseData = await response.json();
+    return responseData.data;
+  } catch (error) {
+    console.error("获取用户列表错误:", error);
+    throw error;
+  }
 }

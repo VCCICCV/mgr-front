@@ -8,7 +8,7 @@
  * Copyright (c) 2024 by TGM All Rights Reserved. 
  */
 
-import { footerLinks } from "@/lib/constant";
+import { footerLinks } from "@/constant/constant";
 import Image from "next/image";
 import Link from "next/link";
 

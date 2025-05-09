@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
-import { productData } from "@/lib/constant";
+import { productData } from "@/constant/constant";
 export default function Home() {
     return (
         <main>

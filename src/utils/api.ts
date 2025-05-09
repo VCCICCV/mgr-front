@@ -1,29 +1,31 @@
-import { getToken, refreshToken } from "@/lib/auth";
+// import { getToken, refreshToken } from "@/lib/auth";
 
-export async function authFetch(input: RequestInfo | URL, init?: RequestInit) {
-  const token = getToken();
+// import { getTokenFromCookie } from "./token";
 
-  const headers = new Headers(init?.headers);
-  if (token) {
-    headers.set("Authorization", `Bearer ${token}`);
-  }
+// export async function authFetch(input: RequestInfo | URL, init?: RequestInit) {
+//   const token = getToken();
 
-  let response = await fetch(input, {
-    ...init,
-    headers,
-  });
+//   const headers = new Headers(init?.headers);
+//   if (token) {
+//     headers.set("Authorization", `Bearer ${token}`);
+//   }
 
-  // 处理 token 过期情况
-  if (response.status === 401 && typeof window !== "undefined") {
-    const newTokens = await refreshToken();
-    if (newTokens) {
-      headers.set("Authorization", `Bearer ${newTokens.token}`);
-      response = await fetch(input, {
-        ...init,
-        headers,
-      });
-    }
-  }
+//   let response = await fetch(input, {
+//     ...init,
+//     headers,
+//   });
 
-  return response;
-}
+//   // 处理 token 过期情况
+//   if (response.status === 401 && typeof window !== "undefined") {
+//     const newTokens = await refreshToken();
+//     if (newTokens) {
+//       headers.set("Authorization", `Bearer ${newTokens.token}`);
+//       response = await fetch(input, {
+//         ...init,
+//         headers,
+//       });
+//     }
+//   }
+
+//   return response;
+// }
