@@ -59,10 +59,6 @@ const items = [
                 title: "角色列表",
                 url: "/role",
             },
-            {
-                title: "角色权限配置",
-                url: "/role/permission",
-            },
         ]
     },
     {

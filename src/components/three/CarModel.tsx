@@ -120,7 +120,7 @@ const CarModel = () => {
 
                 // 安全设置材质属性
                 if (type in materials[matName]) {
-                  materials[matName][type as keyof THREE.Material] = texture;
+                  materials[matName][type as unknown as THREE.Material] = texture;
                 }
                 resolve();
               }, undefined, (error) => {

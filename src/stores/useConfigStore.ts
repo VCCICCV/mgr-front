@@ -18,7 +18,7 @@ interface ConfigStore {
 }
 
 const useConfigStore = create<ConfigStore>((set, get) => ({
-  basePrice: 29999,
+  basePrice: 219999,
   selectedOptions: {},
 
   selectOption: (option) => {

@@ -1,4 +1,3 @@
-// src/components/ui/pagination.tsx
 'use client';
 
 import { Button } from "@/components/ui/button";
@@ -11,6 +10,7 @@ interface PaginationProps {
     total: number;
     onPageChange: (page: number) => void;
     onSizeChange: (size: number) => void;
+    compact?: boolean;
 }
 
 export function Pagination({
@@ -19,8 +19,37 @@ export function Pagination({
     total,
     onPageChange,
     onSizeChange,
+    compact = false, // 设置默认值
 }: PaginationProps) {
     const totalPages = Math.ceil(total / pageSize);
+    // 简洁分页
+    if (compact) {
+        return (
+            <div className="flex items-center justify-between text-sm">
+                <span>
+                    第 {currentPage} 页 / 共 {totalPages} 页
+                </span>
+                <div className="flex gap-1">
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => onPageChange(currentPage - 1)}
+                        disabled={currentPage <= 1}
+                    >
+                        <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => onPageChange(currentPage + 1)}
+                        disabled={currentPage >= totalPages}
+                    >
+                        <ChevronRight className="h-4 w-4" />
+                    </Button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="flex items-center justify-between px-2">

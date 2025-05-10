@@ -85,7 +85,7 @@ export function SKUTable() {
                                     <Button
                                         variant="outline"
                                         size="sm"
-                                        onClick={() => router.push(`/admin/skus/edit/${sku.id}`)}
+                                        onClick={() => router.push(`/admin/inventory/edit/${sku.id}`)}
                                     >
                                         编辑
                                     </Button>

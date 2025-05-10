@@ -12,7 +12,7 @@ const Scene = () => {
     const selectedColors: { [key: string]: string } = {};
     
     if (selectedOptions['color-1']) {
-        selectedColors['车身'] = '#0000FF';
+        selectedColors.车身 = '#0000FF';
     }
 
 

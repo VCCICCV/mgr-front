@@ -9,6 +9,7 @@ const ConfigPalette = () => {
     const [activeTab, setActiveTab] = useState("车身");
     const [forceUpdate, setForceUpdate] = useState(0); // 用于强制重新渲染
 
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     const handleSelect = (item: any) => {
         selectOption({
             id: item.id,

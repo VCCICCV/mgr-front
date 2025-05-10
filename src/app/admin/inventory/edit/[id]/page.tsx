@@ -30,7 +30,7 @@ export default function EditSKUPage({ params }: { params: { id: string } }) {
                 ...values,
                 default_attribute: JSON.parse(values.default_attribute)
             });
-            router.push('/admin/skus');
+            router.push('/admin/inventory');
         } catch (error) {
             console.error('更新SKU失败:', error);
         }
